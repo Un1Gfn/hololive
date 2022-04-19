@@ -39,20 +39,31 @@ def build():
 
     return googleapiclient.discovery.build("youtube", "v3", credentials=creds)
 
+def detail(res: googleapiclient.discovery.Resource, id: str):
+
+    request = res.videos().list(part="snippet,contentDetails,statistics",id=id)
+    response = request.execute()
+    print(response)
+
+
+def search(res: googleapiclient.discovery.Resource):
+
+    # request = res.
+    pass
+
 
 def main():
 
     youtube = build()
+    # print(type(youtube))
+    # print(type(youtube.videos))
+    # help(youtube.videos)
 
-    request = youtube.videos().list(
-        part="snippet,contentDetails,statistics",
-        # id=ANN
-        id=TVBS
-    )
+    # detail(youtube, TVBS)
+    # detail(youtube, ANN)
 
-    response = request.execute()
+    search()
 
-    print(response)
 
 if __name__ == "__main__":
     main()
